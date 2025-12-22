@@ -1,0 +1,1 @@
+/root/ros2_ws/build/in424_desc/ament_cmake_environment_hooks/local_setup.zsh
