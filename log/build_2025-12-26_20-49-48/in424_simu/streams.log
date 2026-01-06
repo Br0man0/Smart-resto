@@ -1,0 +1,53 @@
+[0.048s] Invoking command in '/root/ros2_ws/build/in424_simu': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake /root/ros2_ws/src/IN424/in424_simu -DCMAKE_INSTALL_PREFIX=/root/ros2_ws/install/in424_simu
+[0.085s] -- Found ament_cmake: 1.1.6 (/opt/ros/galactic/share/ament_cmake/cmake)
+[0.130s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.219s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.233s] -- Found ament_lint_auto: 0.10.7 (/opt/ros/galactic/share/ament_lint_auto/cmake)
+[0.336s] -- Added test 'copyright' to check source files copyright and LICENSE
+[0.341s] -- Added test 'flake8' to check Python code syntax and style conventions
+[0.341s] -- Added test 'lint_cmake' to check CMake code style
+[0.342s] -- Added test 'pep257' to check Python code against some of the style conventions in PEP 257
+[0.344s] -- Added test 'xmllint' to check XML markup files
+[0.348s] -- Configuring done
+[0.364s] -- Generating done
+[0.364s] -- Build files have been written to: /root/ros2_ws/build/in424_simu
+[0.373s] Invoked command in '/root/ros2_ws/build/in424_simu' returned '0': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake /root/ros2_ws/src/IN424/in424_simu -DCMAKE_INSTALL_PREFIX=/root/ros2_ws/install/in424_simu
+[0.374s] Invoking command in '/root/ros2_ws/build/in424_simu': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake --build /root/ros2_ws/build/in424_simu -- -j3 -l3
+[0.530s] Invoked command in '/root/ros2_ws/build/in424_simu' returned '0': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake --build /root/ros2_ws/build/in424_simu -- -j3 -l3
+[0.580s] Invoking command in '/root/ros2_ws/build/in424_simu': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake --install /root/ros2_ws/build/in424_simu
+[0.594s] -- Install configuration: ""
+[0.594s] -- Execute custom install script
+[0.597s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/launch/spawn_robots_launch.py
+[0.598s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/launch/start_world_launch.py
+[0.598s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/worlds/env.world
+[0.599s] -- Symlinking: /root/ros2_ws/install/in424_simu/share/in424_simu/worlds/env.world.save
+[0.610s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/worlds/env_base.world
+[0.610s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/models/box_1_1/model.config
+[0.612s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/models/box_1_1/model.sdf
+[0.612s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/models/box_2_2/model.config
+[0.612s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/models/box_2_2/model.sdf
+[0.612s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/models/box_3_2/model.config
+[0.613s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/models/box_3_2/model.sdf
+[0.613s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/models/small_cube/model.config
+[0.615s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/models/small_cube/model.sdf
+[0.616s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/models/walls/model.config
+[0.616s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/models/walls/model.sdf
+[0.616s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/models/walls_2/model.config
+[0.616s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/models/walls_2/model.sdf
+[0.616s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/cfg/config.rviz
+[0.622s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/ament_index/resource_index/package_run_dependencies/in424_simu
+[0.623s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/ament_index/resource_index/parent_prefix_path/in424_simu
+[0.624s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/environment/ament_prefix_path.sh
+[0.625s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/environment/ament_prefix_path.dsv
+[0.627s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/environment/path.sh
+[0.629s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/environment/path.dsv
+[0.630s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/local_setup.bash
+[0.632s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/local_setup.sh
+[0.633s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/local_setup.zsh
+[0.634s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/local_setup.dsv
+[0.635s] -- Symlinking: /root/ros2_ws/install/in424_simu/share/in424_simu/package.dsv
+[0.655s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/ament_index/resource_index/packages/in424_simu
+[0.656s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/cmake/in424_simuConfig.cmake
+[0.657s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/cmake/in424_simuConfig-version.cmake
+[0.657s] -- Up-to-date symlink: /root/ros2_ws/install/in424_simu/share/in424_simu/package.xml
+[0.666s] Invoked command in '/root/ros2_ws/build/in424_simu' returned '0': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake --install /root/ros2_ws/build/in424_simu

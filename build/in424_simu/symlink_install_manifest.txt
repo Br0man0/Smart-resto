@@ -1,6 +1,8 @@
 /root/ros2_ws/install/in424_simu/share/in424_simu/launch/spawn_robots_launch.py
 /root/ros2_ws/install/in424_simu/share/in424_simu/launch/start_world_launch.py
 /root/ros2_ws/install/in424_simu/share/in424_simu/worlds/env.world
+/root/ros2_ws/install/in424_simu/share/in424_simu/worlds/env.world.save
+/root/ros2_ws/install/in424_simu/share/in424_simu/worlds/env_base.world
 /root/ros2_ws/install/in424_simu/share/in424_simu/models/box_1_1/model.config
 /root/ros2_ws/install/in424_simu/share/in424_simu/models/box_1_1/model.sdf
 /root/ros2_ws/install/in424_simu/share/in424_simu/models/box_2_2/model.config

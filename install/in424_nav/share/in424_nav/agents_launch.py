@@ -3,7 +3,7 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    nb_agents = 3
+    nb_agents = 1
     robot_size = 0.5
     env_size = [20, 20]
 

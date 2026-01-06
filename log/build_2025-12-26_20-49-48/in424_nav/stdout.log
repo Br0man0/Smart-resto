@@ -1,0 +1,47 @@
+running develop
+Removing /root/ros2_ws/install/in424_nav/lib/python3.8/site-packages/in424-nav.egg-link (link to .)
+running egg_info
+writing ../../../build/in424_nav/in424_nav.egg-info/PKG-INFO
+writing dependency_links to ../../../build/in424_nav/in424_nav.egg-info/dependency_links.txt
+writing entry points to ../../../build/in424_nav/in424_nav.egg-info/entry_points.txt
+writing requirements to ../../../build/in424_nav/in424_nav.egg-info/requires.txt
+writing top-level names to ../../../build/in424_nav/in424_nav.egg-info/top_level.txt
+reading manifest file '../../../build/in424_nav/in424_nav.egg-info/SOURCES.txt'
+writing manifest file '../../../build/in424_nav/in424_nav.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /root/ros2_ws/build/in424_nav/build
+creating /root/ros2_ws/build/in424_nav/build/lib
+creating /root/ros2_ws/build/in424_nav/build/lib/in424_nav
+copying in424_nav/tf_publishers.py -> /root/ros2_ws/build/in424_nav/build/lib/in424_nav
+copying in424_nav/__init__.py -> /root/ros2_ws/build/in424_nav/build/lib/in424_nav
+copying in424_nav/my_common.py -> /root/ros2_ws/build/in424_nav/build/lib/in424_nav
+copying in424_nav/frontier_exploration.py -> /root/ros2_ws/build/in424_nav/build/lib/in424_nav
+copying in424_nav/agent.py -> /root/ros2_ws/build/in424_nav/build/lib/in424_nav
+copying in424_nav/mcl.py -> /root/ros2_ws/build/in424_nav/build/lib/in424_nav
+copying in424_nav/map_manager.py -> /root/ros2_ws/build/in424_nav/build/lib/in424_nav
+running install
+running install_lib
+creating /root/ros2_ws/install/in424_nav/lib/python3.8/site-packages/in424_nav
+copying /root/ros2_ws/build/in424_nav/build/lib/in424_nav/tf_publishers.py -> /root/ros2_ws/install/in424_nav/lib/python3.8/site-packages/in424_nav
+copying /root/ros2_ws/build/in424_nav/build/lib/in424_nav/__init__.py -> /root/ros2_ws/install/in424_nav/lib/python3.8/site-packages/in424_nav
+copying /root/ros2_ws/build/in424_nav/build/lib/in424_nav/my_common.py -> /root/ros2_ws/install/in424_nav/lib/python3.8/site-packages/in424_nav
+copying /root/ros2_ws/build/in424_nav/build/lib/in424_nav/frontier_exploration.py -> /root/ros2_ws/install/in424_nav/lib/python3.8/site-packages/in424_nav
+copying /root/ros2_ws/build/in424_nav/build/lib/in424_nav/agent.py -> /root/ros2_ws/install/in424_nav/lib/python3.8/site-packages/in424_nav
+copying /root/ros2_ws/build/in424_nav/build/lib/in424_nav/mcl.py -> /root/ros2_ws/install/in424_nav/lib/python3.8/site-packages/in424_nav
+copying /root/ros2_ws/build/in424_nav/build/lib/in424_nav/map_manager.py -> /root/ros2_ws/install/in424_nav/lib/python3.8/site-packages/in424_nav
+byte-compiling /root/ros2_ws/install/in424_nav/lib/python3.8/site-packages/in424_nav/tf_publishers.py to tf_publishers.cpython-38.pyc
+byte-compiling /root/ros2_ws/install/in424_nav/lib/python3.8/site-packages/in424_nav/__init__.py to __init__.cpython-38.pyc
+byte-compiling /root/ros2_ws/install/in424_nav/lib/python3.8/site-packages/in424_nav/my_common.py to my_common.cpython-38.pyc
+byte-compiling /root/ros2_ws/install/in424_nav/lib/python3.8/site-packages/in424_nav/frontier_exploration.py to frontier_exploration.cpython-38.pyc
+byte-compiling /root/ros2_ws/install/in424_nav/lib/python3.8/site-packages/in424_nav/agent.py to agent.cpython-38.pyc
+byte-compiling /root/ros2_ws/install/in424_nav/lib/python3.8/site-packages/in424_nav/mcl.py to mcl.cpython-38.pyc
+byte-compiling /root/ros2_ws/install/in424_nav/lib/python3.8/site-packages/in424_nav/map_manager.py to map_manager.cpython-38.pyc
+running install_data
+running install_egg_info
+Copying ../../../build/in424_nav/in424_nav.egg-info to /root/ros2_ws/install/in424_nav/lib/python3.8/site-packages/in424_nav-1.0.0-py3.8.egg-info
+running install_scripts
+Installing agent script to /root/ros2_ws/install/in424_nav/lib/in424_nav
+Installing map_manager script to /root/ros2_ws/install/in424_nav/lib/in424_nav
+Installing tf_publishers script to /root/ros2_ws/install/in424_nav/lib/in424_nav
+writing list of installed files to '/root/ros2_ws/build/in424_nav/install.log'
