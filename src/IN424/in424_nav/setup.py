@@ -25,7 +25,8 @@ setup(
         'console_scripts': [
             "tf_publishers = in424_nav.tf_publishers:main",
             "agent = in424_nav.agent:main",
-            "map_manager = in424_nav.map_manager:main"
+            "map_manager = in424_nav.map_manager:main",
+            'gui = in424_nav.gui:main'
         ],
     },
 )

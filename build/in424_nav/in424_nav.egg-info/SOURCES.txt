@@ -4,6 +4,7 @@ setup.py
 in424_nav/__init__.py
 in424_nav/agent.py
 in424_nav/frontier_exploration.py
+in424_nav/gui.py
 in424_nav/map_manager.py
 in424_nav/mcl.py
 in424_nav/my_common.py

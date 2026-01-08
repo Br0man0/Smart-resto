@@ -1,0 +1,21 @@
+-- Install configuration: ""
+-- Execute custom install script
+-- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/xacro/macro.xacro
+-- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/xacro/materials.xacro
+-- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/xacro/robot.gazebo
+-- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/xacro/robot.xacro
+-- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/ament_index/resource_index/package_run_dependencies/in424_desc
+-- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/ament_index/resource_index/parent_prefix_path/in424_desc
+-- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/environment/ament_prefix_path.sh
+-- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/environment/ament_prefix_path.dsv
+-- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/environment/path.sh
+-- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/environment/path.dsv
+-- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/local_setup.bash
+-- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/local_setup.sh
+-- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/local_setup.zsh
+-- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/local_setup.dsv
+-- Symlinking: /root/ros2_ws/install/in424_desc/share/in424_desc/package.dsv
+-- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/ament_index/resource_index/packages/in424_desc
+-- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/cmake/in424_descConfig.cmake
+-- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/cmake/in424_descConfig-version.cmake
+-- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/package.xml

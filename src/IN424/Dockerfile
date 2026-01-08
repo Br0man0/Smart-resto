@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     python3-colcon-common-extensions \
     psmisc \
+    python3-tk \
     && rm -rf /var/lib/apt/lists/*
 
 # Installation des dépendances ROS spécifiques à ton projet (issues de ton script)

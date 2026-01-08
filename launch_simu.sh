@@ -1,27 +1,26 @@
 #!/bin/bash
 
-# 1. Nettoyage préventif des processus fantômes
-echo "🧹 Nettoyage des processus Gazebo..."
-killall -9 gzserver gzclient 2> /dev/null
+echo "🧹 Nettoyage..."
+killall -9 gzserver gzclient python3 2> /dev/null
 
-# 2. Nettoyage des dossiers de compilation (Optionnel : commente cette ligne si c'est trop lent)
-echo "🗑️  Suppression des anciens fichiers de build..."
-rm -rf build/ install/ log/
-
-# 3. Compilation
-echo "🔨 Compilation du projet..."
+echo "🔨 Compilation..."
 colcon build --symlink-install
 
-# Vérification si la compilation a réussi
 if [ $? -ne 0 ]; then
-    echo "❌ Erreur de compilation. Arrêt du script."
+    echo "❌ Erreur de compilation."
     exit 1
 fi
 
-# 4. Sourcing de l'environnement
-echo "🌿 Sourcing de l'environnement..."
+echo "🌿 Sourcing..."
 source install/setup.bash
 
-# 5. Lancement de la simulation
-echo "🚀 Lancement de la simulation..."
-ros2 launch in424_simu start_world_launch.py
+# Lancement en arrière-plan (&)
+echo "🚀 Simulation..."
+ros2 launch in424_simu start_world_launch.py &
+sleep 5 # Attendre que Gazebo charge un peu
+
+echo "🧠 Lancement du Cerveau (Agent)..."
+ros2 run in424_nav agent &
+
+echo "🖥️  Lancement de l'Interface Graphique..."
+ros2 run in424_nav gui

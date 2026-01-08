@@ -1,0 +1,4 @@
+Invoking command in '/root/ros2_ws/build/in424_simu': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake --build /root/ros2_ws/build/in424_simu -- -j3 -l3
+Invoked command in '/root/ros2_ws/build/in424_simu' returned '0': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake --build /root/ros2_ws/build/in424_simu -- -j3 -l3
+Invoking command in '/root/ros2_ws/build/in424_simu': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake --install /root/ros2_ws/build/in424_simu
+Invoked command in '/root/ros2_ws/build/in424_simu' returned '0': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake --install /root/ros2_ws/build/in424_simu

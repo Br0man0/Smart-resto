@@ -1,5 +1,6 @@
 [console_scripts]
 agent = in424_nav.agent:main
+gui = in424_nav.gui:main
 map_manager = in424_nav.map_manager:main
 tf_publishers = in424_nav.tf_publishers:main
 
