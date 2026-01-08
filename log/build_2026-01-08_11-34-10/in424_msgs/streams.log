@@ -1,0 +1,54 @@
+[0.052s] Invoking command in '/root/ros2_ws/build/in424_msgs': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake /root/ros2_ws/src/IN424/in424_msgs -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/root/ros2_ws/install/in424_msgs
+[0.201s] -- The C compiler identification is GNU 9.4.0
+[0.324s] -- The CXX compiler identification is GNU 9.4.0
+[0.330s] -- Check for working C compiler: /usr/bin/cc
+[0.422s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.429s] -- Detecting C compiler ABI info
+[0.534s] -- Detecting C compiler ABI info - done
+[0.548s] -- Detecting C compile features
+[0.548s] -- Detecting C compile features - done
+[0.551s] -- Check for working CXX compiler: /usr/bin/c++
+[0.653s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.656s] -- Detecting CXX compiler ABI info
+[0.761s] -- Detecting CXX compiler ABI info - done
+[0.771s] -- Detecting CXX compile features
+[0.772s] -- Detecting CXX compile features - done
+[0.785s] -- Found ament_cmake: 1.1.6 (/opt/ros/galactic/share/ament_cmake/cmake)
+[0.823s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.823s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.903s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.982s] -- Found rosidl_default_generators: 1.1.1 (/opt/ros/galactic/share/rosidl_default_generators/cmake)
+[0.993s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.049s] -- Found rosidl_adapter: 2.2.3 (/opt/ros/galactic/share/rosidl_adapter/cmake)
+[1.225s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[1.276s] -- Found FastRTPS: /opt/ros/galactic/include  
+[1.438s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.504s] -- Found ament_lint_auto: 0.10.7 (/opt/ros/galactic/share/ament_lint_auto/cmake)
+[1.600s] -- Added test 'copyright' to check source files copyright and LICENSE
+[1.602s] -- Added test 'lint_cmake' to check CMake code style
+[1.604s] -- Added test 'xmllint' to check XML markup files
+[1.610s] -- Configuring done
+[1.612s] -- Generating done
+[1.615s] -- Build files have been written to: /root/ros2_ws/build/in424_msgs
+[1.640s] Invoked command in '/root/ros2_ws/build/in424_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake /root/ros2_ws/src/IN424/in424_msgs -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/root/ros2_ws/install/in424_msgs
+[1.641s] Invoking command in '/root/ros2_ws/build/in424_msgs': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake --build /root/ros2_ws/build/in424_msgs -- -j3 -l3
+[1.715s] Invoked command in '/root/ros2_ws/build/in424_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake --build /root/ros2_ws/build/in424_msgs -- -j3 -l3
+[1.765s] Invoking command in '/root/ros2_ws/build/in424_msgs': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake --install /root/ros2_ws/build/in424_msgs
+[1.777s] -- Install configuration: ""
+[1.778s] -- Execute custom install script
+[1.778s] -- Symlinking: /root/ros2_ws/install/in424_msgs/share/ament_index/resource_index/package_run_dependencies/in424_msgs
+[1.790s] -- Symlinking: /root/ros2_ws/install/in424_msgs/share/ament_index/resource_index/parent_prefix_path/in424_msgs
+[1.803s] -- Symlinking: /root/ros2_ws/install/in424_msgs/share/in424_msgs/environment/ament_prefix_path.sh
+[1.816s] -- Symlinking: /root/ros2_ws/install/in424_msgs/share/in424_msgs/environment/ament_prefix_path.dsv
+[1.843s] -- Symlinking: /root/ros2_ws/install/in424_msgs/share/in424_msgs/environment/path.sh
+[1.856s] -- Symlinking: /root/ros2_ws/install/in424_msgs/share/in424_msgs/environment/path.dsv
+[1.868s] -- Symlinking: /root/ros2_ws/install/in424_msgs/share/in424_msgs/local_setup.bash
+[1.880s] -- Symlinking: /root/ros2_ws/install/in424_msgs/share/in424_msgs/local_setup.sh
+[1.893s] -- Symlinking: /root/ros2_ws/install/in424_msgs/share/in424_msgs/local_setup.zsh
+[1.906s] -- Symlinking: /root/ros2_ws/install/in424_msgs/share/in424_msgs/local_setup.dsv
+[1.921s] -- Symlinking: /root/ros2_ws/install/in424_msgs/share/in424_msgs/package.dsv
+[1.936s] -- Symlinking: /root/ros2_ws/install/in424_msgs/share/ament_index/resource_index/packages/in424_msgs
+[1.948s] -- Symlinking: /root/ros2_ws/install/in424_msgs/share/in424_msgs/cmake/in424_msgsConfig.cmake
+[1.961s] -- Symlinking: /root/ros2_ws/install/in424_msgs/share/in424_msgs/cmake/in424_msgsConfig-version.cmake
+[1.976s] -- Symlinking: /root/ros2_ws/install/in424_msgs/share/in424_msgs/package.xml
+[1.997s] Invoked command in '/root/ros2_ws/build/in424_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake --install /root/ros2_ws/build/in424_msgs
