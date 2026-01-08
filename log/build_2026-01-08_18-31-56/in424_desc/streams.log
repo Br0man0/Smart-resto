@@ -1,0 +1,25 @@
+[0.079s] Invoking command in '/root/ros2_ws/build/in424_desc': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake --build /root/ros2_ws/build/in424_desc -- -j3 -l3
+[0.314s] Invoked command in '/root/ros2_ws/build/in424_desc' returned '0': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake --build /root/ros2_ws/build/in424_desc -- -j3 -l3
+[0.383s] Invoking command in '/root/ros2_ws/build/in424_desc': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake --install /root/ros2_ws/build/in424_desc
+[0.394s] -- Install configuration: ""
+[0.395s] -- Execute custom install script
+[0.396s] -- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/xacro/macro.xacro
+[0.397s] -- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/xacro/materials.xacro
+[0.397s] -- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/xacro/robot.gazebo
+[0.398s] -- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/xacro/robot.xacro
+[0.398s] -- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/ament_index/resource_index/package_run_dependencies/in424_desc
+[0.400s] -- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/ament_index/resource_index/parent_prefix_path/in424_desc
+[0.401s] -- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/environment/ament_prefix_path.sh
+[0.402s] -- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/environment/ament_prefix_path.dsv
+[0.403s] -- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/environment/path.sh
+[0.404s] -- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/environment/path.dsv
+[0.404s] -- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/local_setup.bash
+[0.405s] -- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/local_setup.sh
+[0.407s] -- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/local_setup.zsh
+[0.407s] -- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/local_setup.dsv
+[0.408s] -- Symlinking: /root/ros2_ws/install/in424_desc/share/in424_desc/package.dsv
+[0.423s] -- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/ament_index/resource_index/packages/in424_desc
+[0.424s] -- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/cmake/in424_descConfig.cmake
+[0.425s] -- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/cmake/in424_descConfig-version.cmake
+[0.429s] -- Up-to-date symlink: /root/ros2_ws/install/in424_desc/share/in424_desc/package.xml
+[0.441s] Invoked command in '/root/ros2_ws/build/in424_desc' returned '0': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake --install /root/ros2_ws/build/in424_desc
