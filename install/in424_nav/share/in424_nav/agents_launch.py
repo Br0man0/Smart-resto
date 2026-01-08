@@ -4,7 +4,7 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     nb_agents = 1
-    robot_size = 1
+    robot_size = 4
     env_size = [20, 20]
 
     agent_nodes = []

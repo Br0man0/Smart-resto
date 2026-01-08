@@ -1,25 +1,27 @@
 #!/bin/bash
 
-# 1. Charger l'environnement ROS 2 Galactic global
-source /opt/ros/galactic/setup.bash
+# 1. Nettoyage préventif des processus fantômes
+echo "🧹 Nettoyage des processus Gazebo..."
+killall -9 gzserver gzclient 2> /dev/null
 
-# 2. Charger les variables Gazebo (évite les bugs de modèles manquants)
-if [ -f /usr/share/gazebo/setup.sh ]; then
-    source /usr/share/gazebo/setup.sh
-fi
+# 2. Nettoyage des dossiers de compilation (Optionnel : commente cette ligne si c'est trop lent)
+echo "🗑️  Suppression des anciens fichiers de build..."
+rm -rf build/ install/ log/
 
-# 3. Charger ton Workspace local
-# Le script cherche le dossier install où qu'il soit par rapport au home
-WS_DIR="$HOME/ros2_ws"
+# 3. Compilation
+echo "🔨 Compilation du projet..."
+colcon build --symlink-install
 
-if [ -f "$WS_DIR/install/setup.bash" ]; then
-    source "$WS_DIR/install/setup.bash"
-else
-    echo "ERREUR : Fichier install/setup.bash introuvable !"
-    echo "As-tu bien lancé 'colcon build' ?"
+# Vérification si la compilation a réussi
+if [ $? -ne 0 ]; then
+    echo "❌ Erreur de compilation. Arrêt du script."
     exit 1
 fi
 
-# 4. Lancer la simulation
-echo "🚀 Lancement de la simulation IN424..."
+# 4. Sourcing de l'environnement
+echo "🌿 Sourcing de l'environnement..."
+source install/setup.bash
+
+# 5. Lancement de la simulation
+echo "🚀 Lancement de la simulation..."
 ros2 launch in424_simu start_world_launch.py

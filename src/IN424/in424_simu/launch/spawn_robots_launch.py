@@ -11,7 +11,7 @@ def generate_launch_description():
     base_colors = ("White", "Red", "Green")
 
     robots = [
-        {"name" : "bot_1", "x" : 5.0, "y" : 7.0, "z": 0.50, "roll": 0.0, "pitch" : 0.0, "yaw": 1.57},
+        {"name" : "bot_1", "x" : 9.0, "y" : 1, "z": 0.50, "roll": 0.0, "pitch" : 0.0, "yaw": 1.57},
     ]
 
     nb_agents = 1
