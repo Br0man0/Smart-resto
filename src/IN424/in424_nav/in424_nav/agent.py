@@ -3,79 +3,162 @@ import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
-from sensor_msgs.msg import LaserScan
 import math
 import time
 
-# --- CARTOGRAPHIE DU RESTAURANT (Tes points "Safe") ---
+# --- 1. POINTS DE PASSAGE (RAILS) ---
 WAYPOINTS = {
-    # Base
     "Cuisine": (9.0, 1.0),
 
-    # Couloir du Haut (Rouge) - Y = 5.0
-    "R_P1": (9.0, 5.0),
-    "R_P2": (6.0, 5.0),
-    "R_P3": (3.0, 5.0),
-    "R_P4": (-2.0, 5.0),
-    "R_P5": (-5.7, 5.0),
+    # Colonne Vertébrale (ROUGE)
+    "R_P1": (9.0, 5.0),   # Entrée Autoroute
+    "R_P2": (5.5, 5.0),   # Carrefour Haut (Vers Bleus)
+    "R_P3": (5.5, 2.0),   # Descente
+    "R_P4": (5.5, -2.0),  # Descente
+    "R_P5": (5.5, -5.7),  # Carrefour Bas (Vers Verts)
 
-    # Rangée Droite (Bleu) - X = 9.0
-    "B_P1": (9.0, 2.5),
-    "B_P2": (9.0, 0.5),
-    "B_P3": (9.0, -3.5),
-    "B_P4": (9.0, -6.5),
+    # Ligne du Haut (BLEUE) - Y = 5.0
+    "B_P1": (3.5, 5.0),
+    "B_P2": (0.5, 5.0),
+    "B_P3": (-3.5, 5.0),
+    "B_P4": (-6.5, 5.0),
 
-    # Rangée Gauche (Vert) - X = -5.7
-    "V_P1": (-5.7, 3.0),
-    "V_P2": (-5.7, 0.0),
-    "V_P3": (-5.7, -3.5),
-    "V_P4": (-5.7, -6.5),
-    
-    # Tables (Exemple pour test)
-    "Table_Test_Centre": (3.0, 4.0), # Une table proche de R_P3
+    # Ligne du Bas (VERTE) - Y = -5.7
+    "V_P1": (2.7, -5.7),
+    "V_P2": (0.0, -5.7),
+    "V_P3": (-3.5, -5.7),
+    "V_P4": (-6.5, -5.7),
 }
 
-# --- DÉFINITION DE LA MISSION ---
-# C'est ici qu'on définit le chemin "Safe".
-# Scénario : Le robot part de la cuisine, va au milieu du couloir rouge, livre, et revient.
-CURRENT_MISSION = [
-    "Cuisine",  # Départ
-    "R_P1",     # Monte au couloir rouge
-    "R_P2",     # Avance dans le couloir
-    "R_P3",     # Continue
-    "Table_Test_Centre", # Approche précise (Sortie du rail safe)
-    "R_P3",     # Retour sur le rail safe
-    "R_P2",     # Retour
-    "R_P1",     # Retour
-    "Cuisine"   # Rentre à la base
-]
+# --- 2. POINTS DE SERVICE (TABLES) ---
+# Coordonnées exactes fournies pour le service
+TABLE_SPOTS = {
+    # Rangée 1 (Bas - Loin)
+    "table_11": (-6.5, -6.5),
+    "table_12": (-3.5, -6.5),
+    "table_13": (0.0, -6.5),
+    "table_14": (2.8, -6.5),
+
+    # Rangée 2 (Bas - Proche)
+    "table_21": (-6.5, -4.5),
+    "table_22": (-3.5, -4.5),
+    "table_23": (0.0, -4.5),
+    "table_24": (2.5, -4.5),
+
+    # Rangée 3 (Haut - Proche)
+    "table_31": (-6.5, 2.8),
+    "table_32": (-3.5, 2.8),
+    "table_33": (0.0, 2.8),
+    "table_34": (2.5, 2.8),
+
+    # Rangée 4 (Haut - Loin)
+    "table_41": (-3.5, 6.5),
+    "table_42": (0.5, 6.5),
+    "table_43": (3.5, 6.5),
+    "table_44": (6.5, 6.5),
+}
 
 class RestaurantAgent(Node):
     def __init__(self):
         super().__init__('restaurant_agent')
         
-        # Communication ROS 2 (Namespace bot_1)
         self.cmd_vel_pub = self.create_publisher(Twist, '/bot_1/cmd_vel', 10)
         self.odom_sub = self.create_subscription(Odometry, '/bot_1/odom', self.odom_callback, 10)
         
-        # État du robot
-        self.x = 0.0
-        self.y = 0.0
-        self.yaw = 0.0
-        
-        # Gestion de la mission
-        self.mission_step = 0 # Étape actuelle dans la liste CURRENT_MISSION
-        self.state = "MOVING" # États: MOVING, SERVING, END
+        self.x = 0.0; self.y = 0.0; self.yaw = 0.0
+        self.current_path = []
+        self.path_index = 0
+        self.state = "IDLE"
         self.wait_start_time = None
         
-        # Paramètres de mouvement
-        self.linear_speed = 0.5
+        self.linear_speed = 0.6
         self.angular_speed = 1.0
-        self.dist_tolerance = 0.15 # Précision de 15cm
+        self.dist_tolerance = 0.15
         self.angle_tolerance = 0.05
 
         self.timer = self.create_timer(0.1, self.control_loop)
-        self.get_logger().info("🤖 Robot Serveur (bot_1) Prêt ! Système de Waypoints chargé.")
+        self.get_logger().info("🤖 Robot Serveur Prêt.")
+
+        # --- TEST : CHANGEZ ICI LA TABLE À SERVIR ---
+        self.go_to_table("table_44") 
+
+    def get_closest_waypoint(self, target_x, line_points):
+        """ Trouve le point de passage dont le X est le plus proche de la table """
+        best_wp = None
+        min_dist = 999.9
+        
+        for wp_name in line_points:
+            wp_x = WAYPOINTS[wp_name][0]
+            dist = abs(target_x - wp_x)
+            if dist < min_dist:
+                min_dist = dist
+                best_wp = wp_name
+        return best_wp
+
+    def go_to_table(self, table_name):
+        if table_name not in TABLE_SPOTS:
+            self.get_logger().error(f"❌ Table inconnue: {table_name}")
+            return
+
+        self.get_logger().info(f"🚀 Service demandé : {table_name}")
+        
+        target_coords = TABLE_SPOTS[table_name]
+        table_x, table_y = target_coords
+        row = int(table_name[6]) # Récupère le chiffre des dizaines (rangée)
+
+        path = []
+        # 1. Sortie de la cuisine (Tronc commun)
+        path.append( (WAYPOINTS["Cuisine"], "MOVE") )
+        path.append( (WAYPOINTS["R_P1"], "MOVE") )
+        path.append( (WAYPOINTS["R_P2"], "MOVE") ) # Carrefour principal (5.5, 5.0)
+
+        exit_waypoint = None
+
+        # 2. Routage par Zone
+        if row in [1, 2]: 
+            # --- ZONE SUD (VERTE) ---
+            self.get_logger().info("   -> Itinéraire : Sud (Vert)")
+            # On descend le backbone Rouge
+            path.append( (WAYPOINTS["R_P3"], "MOVE") )
+            path.append( (WAYPOINTS["R_P4"], "MOVE") )
+            path.append( (WAYPOINTS["R_P5"], "MOVE") ) # Arrivée en bas (5.5, -5.7)
+            
+            # On cherche le point VERT le plus proche en X
+            green_points = ["V_P1", "V_P2", "V_P3", "V_P4", "R_P5"]
+            exit_name = self.get_closest_waypoint(table_x, green_points)
+            exit_waypoint = WAYPOINTS[exit_name]
+            
+            # Si le point de sortie n'est pas R_P5, on l'ajoute
+            if exit_name != "R_P5":
+                path.append( (exit_waypoint, "MOVE") )
+
+        elif row in [3, 4]:
+            # --- ZONE NORD (BLEUE) ---
+            self.get_logger().info("   -> Itinéraire : Nord (Bleu)")
+            # On est déjà à R_P2 (5.5, 5.0)
+            
+            # On cherche le point BLEU (ou Rouge) le plus proche en X
+            blue_points = ["B_P1", "B_P2", "B_P3", "B_P4", "R_P2"]
+            exit_name = self.get_closest_waypoint(table_x, blue_points)
+            exit_waypoint = WAYPOINTS[exit_name]
+            
+            if exit_name != "R_P2":
+                path.append( (exit_waypoint, "MOVE") )
+
+        # 3. Approche Finale (Le point de service exact)
+        path.append( (target_coords, "SERVE") )
+
+        # 4. Construction du retour (Miroir)
+        return_path = []
+        for pt, action in reversed(path[:-1]):
+            return_path.append( (pt, "MOVE") )
+        
+        path.extend(return_path)
+        path.append( (WAYPOINTS["Cuisine"], "STOP") )
+
+        self.current_path = path
+        self.path_index = 0
+        self.state = "MOVING"
 
     def odom_callback(self, msg):
         self.x = msg.pose.pose.position.x
@@ -84,73 +167,41 @@ class RestaurantAgent(Node):
 
     def control_loop(self):
         vel = Twist()
-
-        # Si la mission est finie
-        if self.mission_step >= len(CURRENT_MISSION):
-            self.cmd_vel_pub.publish(Twist()) # Stop
+        if self.state == "IDLE" or self.path_index >= len(self.current_path):
+            self.cmd_vel_pub.publish(Twist())
             return
 
-        # 1. Identifier la cible actuelle
-        target_name = CURRENT_MISSION[self.mission_step]
-        
-        # Sécurité : Vérifier que le point existe dans le dictionnaire
-        if target_name not in WAYPOINTS:
-            self.get_logger().error(f"❌ Point inconnu : {target_name}")
-            return
-            
-        target_x, target_y = WAYPOINTS[target_name]
+        (tx, ty), action = self.current_path[self.path_index]
+        dx = tx - self.x
+        dy = ty - self.y
+        dist = math.sqrt(dx**2 + dy**2)
+        angle_diff = self.normalize_angle(math.atan2(dy, dx) - self.yaw)
 
-        # 2. Calculs de navigation
-        dist_x = target_x - self.x
-        dist_y = target_y - self.y
-        distance = math.sqrt(dist_x**2 + dist_y**2)
-        target_angle = math.atan2(dist_y, dist_x)
-        angle_diff = self.normalize_angle(target_angle - self.yaw)
-
-        # 3. Machine à états
         if self.state == "MOVING":
-            # Affichage de progression (tous les mètres environ pour ne pas spammer)
-            # self.get_logger().info(f"Vers {target_name} : Dist={distance:.2f}m")
-
-            if distance < self.dist_tolerance:
-                self.get_logger().info(f"✅ Arrivé au waypoint : {target_name}")
-                
-                # Si c'est une Table (pas un point de passage), on fait une pause "Service"
-                if "Table" in target_name:
+            if dist < self.dist_tolerance:
+                self.get_logger().info(f"✅ Rejoint : ({tx:.1f}, {ty:.1f})")
+                if action == "SERVE":
                     self.state = "SERVING"
                     self.wait_start_time = self.get_clock().now()
+                    vel.linear.x = 0.0; vel.angular.z = 0.0
+                elif action == "STOP":
+                    self.state = "IDLE"
+                    self.get_logger().info("🏁 Service terminé.")
                 else:
-                    # Si c'est juste un point de passage, on enchaîne direct
-                    self.mission_step += 1
-                
-                vel.linear.x = 0.0
-                vel.angular.z = 0.0
+                    self.path_index += 1
             
             elif abs(angle_diff) > self.angle_tolerance:
-                # Rotation sur place
                 vel.linear.x = 0.0
-                vel.angular.z = 1.5 * angle_diff
-                # Saturation vitesse
-                if vel.angular.z > self.angular_speed: vel.angular.z = self.angular_speed
-                if vel.angular.z < -self.angular_speed: vel.angular.z = -self.angular_speed
-                
+                vel.angular.z = max(min(2.0 * angle_diff, self.angular_speed), -self.angular_speed)
             else:
-                # Avancer
                 vel.linear.x = self.linear_speed
-                # Correction d'angle légère en avançant
-                vel.angular.z = 0.5 * angle_diff 
+                vel.angular.z = 0.8 * angle_diff
 
         elif self.state == "SERVING":
-            now = self.get_clock().now()
-            elapsed = (now - self.wait_start_time).nanoseconds / 1e9
-            
-            if elapsed > 5.0: # Pause de 5 secondes
-                self.get_logger().info("🍽️ Service terminé. Retour à la navigation.")
-                self.mission_step += 1
+            if (self.get_clock().now() - self.wait_start_time).nanoseconds / 1e9 > 5.0:
+                self.get_logger().info("🍽️ Client servi. Retour.")
+                self.path_index += 1
                 self.state = "MOVING"
-            else:
-                vel.linear.x = 0.0
-                vel.angular.z = 0.0
 
         self.cmd_vel_pub.publish(vel)
 
