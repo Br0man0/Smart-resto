@@ -1,0 +1,29 @@
+[0.947s] Invoking command in '/root/ros2_ws/build/in424_nav': PYTHONPATH=/root/ros2_ws/build/in424_nav/prefix_override:/root/ros2_ws/install/in424_nav/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /root/ros2_ws/build/in424_nav/build --no-deps install_data
+[1.154s] running develop
+[1.264s] running egg_info
+[1.264s] creating in424_nav.egg-info
+[1.264s] writing in424_nav.egg-info/PKG-INFO
+[1.265s] writing dependency_links to in424_nav.egg-info/dependency_links.txt
+[1.265s] writing entry points to in424_nav.egg-info/entry_points.txt
+[1.265s] writing requirements to in424_nav.egg-info/requires.txt
+[1.265s] writing top-level names to in424_nav.egg-info/top_level.txt
+[1.266s] writing manifest file 'in424_nav.egg-info/SOURCES.txt'
+[1.292s] reading manifest file 'in424_nav.egg-info/SOURCES.txt'
+[1.304s] writing manifest file 'in424_nav.egg-info/SOURCES.txt'
+[1.324s] running build_ext
+[1.326s] Creating /root/ros2_ws/install/in424_nav/lib/python3.8/site-packages/site.py
+[1.327s] Creating /root/ros2_ws/install/in424_nav/lib/python3.8/site-packages/in424-nav.egg-link (link to .)
+[1.328s] Installing agent script to /root/ros2_ws/install/in424_nav/lib/in424_nav
+[1.328s] Installing gui script to /root/ros2_ws/install/in424_nav/lib/in424_nav
+[1.329s] Installing map_manager script to /root/ros2_ws/install/in424_nav/lib/in424_nav
+[1.329s] Installing tf_publishers script to /root/ros2_ws/install/in424_nav/lib/in424_nav
+[1.329s] 
+[1.329s] Installed /root/ros2_ws/build/in424_nav
+[1.329s] running install_data
+[1.329s] creating /root/ros2_ws/install/in424_nav/share/ament_index
+[1.329s] creating /root/ros2_ws/install/in424_nav/share/ament_index/resource_index
+[1.330s] creating /root/ros2_ws/install/in424_nav/share/ament_index/resource_index/packages
+[1.330s] copying resource/in424_nav -> /root/ros2_ws/install/in424_nav/share/ament_index/resource_index/packages
+[1.331s] copying package.xml -> /root/ros2_ws/install/in424_nav/share/in424_nav
+[1.331s] copying launch/agents_launch.py -> /root/ros2_ws/install/in424_nav/share/in424_nav
+[1.392s] Invoked command in '/root/ros2_ws/build/in424_nav' returned '0': PYTHONPATH=/root/ros2_ws/build/in424_nav/prefix_override:/root/ros2_ws/install/in424_nav/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /root/ros2_ws/build/in424_nav/build --no-deps install_data

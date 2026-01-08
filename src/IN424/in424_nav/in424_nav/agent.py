@@ -3,9 +3,8 @@ import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
-from std_msgs.msg import String # Nécessaire pour parler à l'interface
+from std_msgs.msg import String
 import math
-import time
 
 # --- 1. CARTOGRAPHIE ---
 WAYPOINTS = {
@@ -27,33 +26,39 @@ class RestaurantAgent(Node):
     def __init__(self):
         super().__init__('restaurant_agent')
         
-        # Navigation
         self.cmd_vel_pub = self.create_publisher(Twist, '/bot_1/cmd_vel', 10)
         self.odom_sub = self.create_subscription(Odometry, '/bot_1/odom', self.odom_callback, 10)
-        
-        # --- NOUVEAU : Communication avec l'Interface ---
         self.gui_sub = self.create_subscription(String, '/gui/command', self.command_callback, 10)
         self.status_pub = self.create_publisher(String, '/gui/status', 10)
-        # -----------------------------------------------
 
         self.x = 0.0; self.y = 0.0; self.yaw = 0.0
         self.current_path = []
         self.path_index = 0
         self.state = "IDLE"
-        self.wait_start_time = None
+        self.return_signal_received = False
+        
         self.linear_speed = 0.6
         self.angular_speed = 1.0
         self.dist_tolerance = 0.15
         self.angle_tolerance = 0.05
 
         self.timer = self.create_timer(0.1, self.control_loop)
-        self.get_logger().info("🤖 Robot Prêt. En attente d'ordres via l'interface...")
+        self.get_logger().info("🤖 NOUVELLE VERSION CHARGÉE : Attente active activée.")
 
-    # --- Callback de l'interface ---
     def command_callback(self, msg):
-        table_name = msg.data
-        self.get_logger().info(f"📥 Commande reçue de l'interface : {table_name}")
-        self.go_to_table(table_name)
+        command = msg.data
+        if command == "RETURN":
+            if self.state == "SERVING":
+                self.get_logger().info("👍 RETOUR CONFIRMÉ PAR L'INTERFACE.")
+                self.return_signal_received = True
+            else:
+                self.get_logger().warn(f"Commande RETURN ignorée (État actuel: {self.state})")
+        elif command in TABLE_SPOTS:
+            if self.state == "IDLE":
+                self.get_logger().info(f"🚀 Départ vers {command}")
+                self.go_to_table(command)
+            else:
+                self.get_logger().warn("Robot occupé.")
 
     def get_closest_waypoint(self, target_x, line_points):
         best_wp = None; min_dist = 999.9
@@ -63,7 +68,7 @@ class RestaurantAgent(Node):
         return best_wp
 
     def go_to_table(self, table_name):
-        if table_name not in TABLE_SPOTS: return
+        self.return_signal_received = False
         target_coords = TABLE_SPOTS[table_name]
         row = int(table_name[6])
         
@@ -72,7 +77,6 @@ class RestaurantAgent(Node):
         path.append((WAYPOINTS["R_P1"], "MOVE"))
         path.append((WAYPOINTS["R_P2"], "MOVE"))
 
-        exit_waypoint = None
         if row in [1, 2]: 
             path.append((WAYPOINTS["R_P3"], "MOVE"))
             path.append((WAYPOINTS["R_P4"], "MOVE"))
@@ -85,9 +89,8 @@ class RestaurantAgent(Node):
             exit_name = self.get_closest_waypoint(target_coords[0], blue_points)
             if exit_name != "R_P2": path.append((WAYPOINTS[exit_name], "MOVE"))
 
-        path.append((target_coords, "SERVE")) # Approche finale
+        path.append((target_coords, "SERVE"))
 
-        # Retour Miroir
         return_path = []
         for pt, action in reversed(path[:-1]): return_path.append((pt, "MOVE"))
         path.extend(return_path)
@@ -103,12 +106,12 @@ class RestaurantAgent(Node):
         self.yaw = self.euler_from_quaternion(msg.pose.pose.orientation)
 
     def control_loop(self):
-        # Publication du statut pour l'interface
         status_msg = String()
         status_msg.data = self.state
         self.status_pub.publish(status_msg)
 
         vel = Twist()
+        
         if self.state == "IDLE" or self.path_index >= len(self.current_path):
             self.cmd_vel_pub.publish(Twist())
             return
@@ -122,10 +125,11 @@ class RestaurantAgent(Node):
             if dist < self.dist_tolerance:
                 if action == "SERVE":
                     self.state = "SERVING"
-                    self.wait_start_time = self.get_clock().now()
+                    self.get_logger().info("🍽️ Arrivé à table. EN ATTENTE DU BOUTON...")
                     vel.linear.x = 0.0; vel.angular.z = 0.0
                 elif action == "STOP":
                     self.state = "IDLE"
+                    self.get_logger().info("🏁 Mission terminée.")
                 else:
                     self.path_index += 1
             elif abs(angle_diff) > self.angle_tolerance:
@@ -136,9 +140,14 @@ class RestaurantAgent(Node):
                 vel.angular.z = 0.8 * angle_diff
 
         elif self.state == "SERVING":
-            if (self.get_clock().now() - self.wait_start_time).nanoseconds / 1e9 > 5.0:
+            vel.linear.x = 0.0
+            vel.angular.z = 0.0
+            
+            if self.return_signal_received:
+                self.get_logger().info("✅ Signal reçu. On rentre !")
                 self.path_index += 1
                 self.state = "MOVING"
+                self.return_signal_received = False
 
         self.cmd_vel_pub.publish(vel)
 
